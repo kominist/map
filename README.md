@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 KomityMap
 ----
 
@@ -49,11 +47,3 @@ TODO
 * [ ] API
 * [ ] possibilité d'incorporer la map dans une autre page
 
-=======
-map
-===
->>>>>>> e5a8134544b395f015bdf51ccb05c52dfd894f21
-=======
-map
-===
->>>>>>> e5a8134544b395f015bdf51ccb05c52dfd894f21
