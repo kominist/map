@@ -1,8 +1,11 @@
 canvas = require("./lib/canvas.coffee")
 drawable = require("./lib/drawable.coffee")
+pathing = require("./lib/pathing.coffee")
+
 snow = require("./data/island/snow.coffee")
 cromlech = require("./data/decor/cromlech.coffee")
-pathing = require("./lib/pathing.coffee")
+hill = require("./data/hill/snow.coffee")
+
 gridUi = require("./ui/event/grid.coffee")
 positionUi = require("./ui/event/position.coffee")
 pathUi = require("./ui/event/path.coffee")
@@ -40,4 +43,13 @@ for isle in @regions.snow
     )
   ]
 decor.draw() for decor in @decors.cromlech
+
+
+@hills =
+  snow : [
+    new drawable(hill.snow.lowNorthWest, "hill", @background, snow.color,
+      snow.mainIsland
+    )
+  ]
+hill.draw() for hill in @hills.snow
 

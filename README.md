@@ -24,7 +24,7 @@ Librairies utilisées
 TODO
 ----
 * [ ] ajouter les matrices des iles et ilots à la grille de a\*
-* [ ] ajouter le système de hauteur ( hill ) à drawable 
+* [x] ajouter le système de hauteur ( hill ) à drawable
 * [ ] système de matrice a\* pour les hauteurs
 * [ ] ajouter viewport ( vue active ) et système de caméra
 * [ ] ajouter système de zoom

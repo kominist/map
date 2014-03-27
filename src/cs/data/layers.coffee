@@ -1,9 +1,9 @@
 layer =
   color : [
     null
-    "#eee"
-    "#aaa"
-    "#333"
-    "#111"
+    "blue"
+    "purple"
+    "red"
+    "white"
   ]
 module.exports = layer
