@@ -1,5 +1,5 @@
 snow =
-  color : "lightgrey"
+  color : "#cbdae7"
   isletNorthEast :
     type : "rect"
     coords :

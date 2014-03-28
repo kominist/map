@@ -25,8 +25,18 @@ module.exports = (grunt) ->
           transform : ["coffeeify"]
         files :
           "dist/js/komitymap.js" : ["src/cs/main.coffee", "src/cs/lib/*.coffee"]
+          
+    copy :
+      dist :
+        files :[
+          expand : true
+          cwd : "src/img/"
+          src : ["**"]
+          dest : "images/"
+        ]
 
   grunt.loadNpmTasks "grunt-contrib-coffee"
+  grunt.loadNpmTasks "grunt-contrib-copy"
   grunt.loadNpmTasks "grunt-coffeelint"
   grunt.loadNpmTasks "grunt-contrib-uglify"
   grunt.loadNpmTasks "grunt-browserify"
@@ -35,6 +45,7 @@ module.exports = (grunt) ->
     "coffeelint"
     "browserify:dist"
     "uglify:compile"
+    "copy:dist"
   ]
 
   grunt.registerTask "test", [

@@ -4,6 +4,11 @@ class Pathing
     @canvas = new canvas("#path")
     @point = []
     @PF = require("./path.js")
+    @pathFind = new @PF.Grid(
+      Math.round(@canvas.canvas.offsetWidth / 10),
+      Math.round(@canvas.canvas.offsetHeight / 10)
+    )
+    @reverseMatrix()
     @
 
   getState : ->
@@ -20,10 +25,7 @@ class Pathing
     @el.innerHTML = @ui.on
 
   render :  ->
-    @pathFind = new @PF.Grid(
-      Math.round(@canvas.canvas.offsetWidth / 10),
-      Math.round(@canvas.canvas.offsetHeight / 10)
-    )
+    @pathFind = @pathFind.clone()
     @AStarFinder = new @PF.AStarFinder @options
     @path = @AStarFinder.findPath(
       Math.round(@point[0].x / 10),
@@ -75,6 +77,20 @@ class Pathing
 
   addMatrix : (@matrix) ->
     
+  reverseMatrix : ->
+    #for x in [0...(@canvas.canvas.offsetWidth / 10)]
+      #for y in [0...(@canvas.canvas.offsetHeight / 10)]
+        #@pathFind.setWalkableAt(
+          #Math.round(x),
+          #Math.round(y),
+          #false
+        #)
+        #@canvas.context.beginPath()
+        #@canvas.context.globalAlpha = 0.2
+        #@canvas.context.rect(x*10,y*10,x+10,y+10)
+        #@canvas.context.fillStyle = "red"
+        #@canvas.context.fill()
+        #@canvas.context.globalAlpha = 1
 
   hasTwoPoints :  ->
     @point.length is 2
