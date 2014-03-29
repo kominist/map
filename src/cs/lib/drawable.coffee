@@ -1,5 +1,5 @@
 class Drawable
-  constructor : (@element, @type, @canvas, @color, @parent = null) ->
+  constructor : (@element, @type, @canvas, @color, @parent = null, config) ->
     @coords = []
     @config = require "../data/config.coffee"
     @z = require "../data/layers.coffee"
@@ -64,4 +64,7 @@ class Drawable
   rect : ->
     @canvas.context.rect(@coords["x"], @coords["y"], @coords["w"], @coords["h"])
 
+  # zoom
+  changeScale : (size = 64) ->
+    @config.tileSize = size
 module.exports = Drawable

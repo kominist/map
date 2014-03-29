@@ -4,6 +4,7 @@ class Canvas
     @canvas.width = @canvas.offsetWidth
     @canvas.height = @canvas.offsetHeight
     @context = @canvas.getContext "2d"
+    @context.scale(1, 1)
     @
 
   getMousePosition : (event) ->
@@ -71,6 +72,10 @@ class Canvas
     @context.strokeStyle = strokeColor
     @context.stroke()
     circle
-
+  
+  # scale
+  changeZoom : (scale) ->
+    @context.scale(scale.w, scale.h)
+  
 module.exports = Canvas
 

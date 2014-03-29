@@ -6,19 +6,19 @@ image = require("./lib/image.coffee")
 snow = require("./data/island/snow.coffee")
 cromlech = require("./data/decor/cromlech.coffee")
 hill = require("./data/hill/snow.coffee")
+shop = require("./data/shop/snow.coffee")
 
 gridUi = require("./ui/event/grid.coffee")
 positionUi = require("./ui/event/position.coffee")
 pathUi = require("./ui/event/path.coffee")
+zoomUi = require("./ui/event/zoom.coffee")
 
 @background = new canvas("#canvas")
 gridUi(@background)
 positionUi(@background)
+zoomUi()
 @pathing = pathUi(@background)
-@background.setMapBackground()
 @assets = new canvas("#assets")
-
-console.log @pathing.pathFind
 
 @regions =
   snow  : [
@@ -27,10 +27,6 @@ console.log @pathing.pathFind
     new drawable(snow.isletSouthWest, "island", @background, snow.color),
     new drawable(snow.isletSouthEast, "island", @background, snow.color)
   ]
-for isle in @regions.snow
-  isle.draw()
-  isle.gridize(@pathing.pathFind)
-
 
 @decors =
   cromlech : [
@@ -47,8 +43,6 @@ for isle in @regions.snow
       snow.isletSouthEast
     )
   ]
-decor.draw() for decor in @decors.cromlech
-
 
 @hills =
   snow : [
@@ -56,9 +50,17 @@ decor.draw() for decor in @decors.cromlech
       snow.mainIsland
     )
   ]
-hill.draw() for hill in @hills.snow
 
-console.log @assets
+@shops =
+  snow :
+    general : [
+      new drawable(shop.snow.general, "shop", @background,
+        "brown", snow.mainIsland
+      )
+    ]
+    colors : [
+    
+    ]
 @images =
   snow :
     cromlech : [
@@ -68,3 +70,32 @@ console.log @assets
     ,
       new image(@assets, @decors.cromlech[2], "./images/cromlech.svg")
     ]
+
+@draw = (@scale = 64) =>
+  @background.clearMapBackground()
+  @assets.clearMapBackground()
+  @background.setMapBackground()
+  for isle in @regions.snow
+    isle.changeScale(@scale)
+    isle.draw()
+    isle.gridize(@pathing.pathFind)
+
+  for decor in @decors.cromlech
+    decor.changeScale(@scale)
+    decor.draw()
+    for asset in @images.snow.cromlech
+      new image(@assets, decor, "./images/cromlech.svg")
+
+  for hill in @hills.snow
+    hill.changeScale(@scale)
+    hill.draw()
+
+  for shop in @shops.snow.general
+    shop.changeScale(@scale)
+    shop.draw()
+
+
+@draw()
+zoom = document.querySelector("input[name=zoom]")
+zoom.addEventListener "input", (e) =>
+  @draw(zoom.value * 64 / 100)

@@ -1,12 +1,19 @@
-module.exports = (@canvas, @position, @imageUrl) ->
-  config = require "../data/config.coffee"
-  img = new Image()
-  img.onload = =>
+class Asset
+  constructor : (@canvas, @position, @imageUrl) ->
+    @img = new Image()
+    @img.src = @imageUrl
+    @img.onload = =>
+      @load()
+
+  load : ->
     @canvas.context.drawImage(
-      img,
+      @img,
       @position.coords["x"],
       @position.coords["y"],
       @position.coords["w"],
       @position.coords["h"]
     )
-  img.src = @imageUrl
+
+  setPosition : (@position) ->
+    
+module.exports = Asset

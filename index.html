@@ -19,13 +19,13 @@
       z-index : 0;
     }
     canvas#grid{
-      z-index : 1;
+      z-index : 4;
     }
     canvas#path{
-      z-index: 2;
+      z-index: 3;
     }
     canvas#assets{
-      z-index: 3;
+      z-index: 1;
     }
     header{
       background: #1b1b1b;
@@ -46,6 +46,7 @@
   <header>
     <button name="grid" role="button">montrer grille</button>
     <button name="allow-path" role="button">commencer chemin</button>
+    <input type="range" name="zoom" min="25" max="200" value="100" step="50"></input>
     <div id="position"></div>
   </header>
   <canvas id="assets"></canvas>
