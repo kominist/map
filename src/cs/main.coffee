@@ -5,18 +5,19 @@ image = require("./lib/image.coffee")
 
 snow = require("./data/island/snow.coffee")
 cromlech = require("./data/decor/cromlech.coffee")
+igloo = require("./data/decor/igloo.coffee")
 hill = require("./data/hill/snow.coffee")
 shop = require("./data/shop/snow.coffee")
 
 gridUi = require("./ui/event/grid.coffee")
 positionUi = require("./ui/event/position.coffee")
 pathUi = require("./ui/event/path.coffee")
-zoomUi = require("./ui/event/zoom.coffee")
+pingUi = require("./ui/event/ping.coffee")
 
 @background = new canvas("#canvas")
 gridUi(@background)
 positionUi(@background)
-zoomUi()
+pingUi(@background)
 @pathing = pathUi(@background)
 @assets = new canvas("#assets")
 
@@ -41,6 +42,12 @@ zoomUi()
     new drawable(cromlech.snow.isletSouthEast, "decor", @background,
       "transparent",
       snow.isletSouthEast
+    )
+  ]
+  igloo : [
+    new drawable(igloo.snow.isletSouthWest, "decor", @background,
+    "transparent",
+    snow.isletSouthWest
     )
   ]
 
@@ -70,6 +77,9 @@ zoomUi()
     ,
       new image(@assets, @decors.cromlech[2], "./images/cromlech.svg")
     ]
+    igloo : [
+      new image(@assets, @decors.igloo[0], "./images/igloo.svg")
+    ]
 
 @draw = (@scale = 64) =>
   @background.clearMapBackground()
@@ -85,6 +95,11 @@ zoomUi()
     decor.draw()
     for asset in @images.snow.cromlech
       new image(@assets, decor, "./images/cromlech.svg")
+  for decor in @decors.igloo
+    decor.changeScale(@scale)
+    decor.draw()
+    for asset in @images.snow.igloo
+      new image(@assets, decor, "./images/igloo.svg")
 
   for hill in @hills.snow
     hill.changeScale(@scale)

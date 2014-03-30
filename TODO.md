@@ -1,9 +1,9 @@
 TODO
 ----
+- [ ] ajouter iles et ilots
 - [ ] ajouter les matrices des iles et ilots à la grille de a\*
 - [x] ajouter le système de hauteur ( hill ) à drawable
 - [ ] système de matrice a\* pour les hauteurs
-- [ ] ajouter viewport ( vue active ) et système de caméra
 - [x] ajouter système de zoom
 - [ ] ajouter les transports (= chemin d'une ile à une autre)
 - [ ] matrice de a\* pour les transports
@@ -17,7 +17,7 @@ TODO
 - [ ] mesurer trot du dino
 - [ ] mesurer galop du dino
 - [ ] ajouter estimation du trajet
-- [ ] ajouter ping (ajout d'une localisation sur un évènement de type click)
+- [x] ajouter ping (ajout d'une localisation sur un évènement de type click)
 - [ ] ajouter nom des iles, ilots, régions, décors
 - [ ] ajout d'une boite de description sur iles, ilots, décors
 - [ ] mesurer jour/nuit
