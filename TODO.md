@@ -23,4 +23,8 @@ TODO
 - [ ] mesurer jour/nuit
 - [ ] API
 - [ ] possibilité d'incorporer la map dans une autre page
-
+- [ ] nouveau canvas pour ping
+- [ ] bordures des ilots et iles
+- [ ] refaire systeme de draw/update
+- [ ] ajouter localstorage
+- [ ] ajouter routing de type url://map/#!/x/y

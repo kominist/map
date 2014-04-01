@@ -10,6 +10,7 @@ class Drawable
       when "decor" then @decor()
       when "hill" then @decor()
       when "shop" then @decor()
+      when "spawn" then @decor()
     @canvas.context.beginPath()
     switch @element.type
       when "rect" then @rect()

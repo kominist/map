@@ -2,12 +2,16 @@ canvas = require("./lib/canvas.coffee")
 drawable = require("./lib/drawable.coffee")
 pathing = require("./lib/pathing.coffee")
 image = require("./lib/image.coffee")
+borders = require("./lib/borderize.coffee")
 
 snow = require("./data/island/snow.coffee")
 cromlech = require("./data/decor/cromlech.coffee")
 igloo = require("./data/decor/igloo.coffee")
+tree = require("./data/decor/tree.coffee")
+rock = require("./data/decor/rock.coffee")
 hill = require("./data/hill/snow.coffee")
 shop = require("./data/shop/snow.coffee")
+spawn = require("./data/mechanism/spawn.coffee")
 
 gridUi = require("./ui/event/grid.coffee")
 positionUi = require("./ui/event/position.coffee")
@@ -45,9 +49,26 @@ pingUi(@background)
     )
   ]
   igloo : [
-    new drawable(igloo.snow.isletSouthWest, "decor", @background,
+    new drawable(igloo.snow.isletSouthEast, "decor", @background,
     "transparent",
-    snow.isletSouthWest
+    snow.isletSouthEast
+    )
+  ]
+  tree : [
+    new drawable(tree.snow[0], "decor", @background,
+    "transparent",
+    snow.isletSouthEast),
+    new drawable(tree.snow[1], "decor", @background,
+    "transparent",
+    snow.isletSouthEast),
+    new drawable(tree.snow[2], "decor", @background,
+    "transparent",
+    snow.isletSouthEast)
+  ]
+  rock : [
+    new drawable(rock.snow[0], "decor", @background,
+    "transparent",
+    snow.isletSouthEast
     )
   ]
 
@@ -66,7 +87,14 @@ pingUi(@background)
       )
     ]
     colors : [
-    
+    ]
+
+@mechanisms =
+  snow :
+    spawn : [
+      new drawable(spawn.snow.isletSouthEast, "spawn", @background,
+        "transparent", snow.isletSouthEast
+      )
     ]
 @images =
   snow :
@@ -79,6 +107,17 @@ pingUi(@background)
     ]
     igloo : [
       new image(@assets, @decors.igloo[0], "./images/igloo.svg")
+    ]
+    tree : [
+      new image(@assets, @decors.tree[0], "./images/tree.svg"),
+      new image(@assets, @decors.tree[1], "./images/tree.svg")
+      new image(@assets, @decors.tree[2], "./images/tree.svg")
+    ]
+    rock : [
+      new image(@assets, @decors.rock[0], "./images/rock.svg")
+    ]
+    spawn : [
+      new image(@assets, @mechanisms.snow.spawn, "./images/spawn.svg")
     ]
 
 @draw = (@scale = 64) =>
@@ -95,11 +134,30 @@ pingUi(@background)
     decor.draw()
     for asset in @images.snow.cromlech
       new image(@assets, decor, "./images/cromlech.svg")
+
   for decor in @decors.igloo
     decor.changeScale(@scale)
     decor.draw()
     for asset in @images.snow.igloo
       new image(@assets, decor, "./images/igloo.svg")
+
+  for decor in @decors.tree
+    decor.changeScale(@scale)
+    decor.draw()
+    for asset in @images.snow.tree
+      new image(@assets, decor, "./images/tree.svg")
+
+  for decor in @decors.rock
+    decor.changeScale(@scale)
+    decor.draw()
+    for asset in @images.snow.rock
+      new image(@assets, decor, "./images/rock.svg")
+
+  for spawn in @mechanisms.snow.spawn
+    spawn.changeScale(@scale)
+    spawn.draw()
+    for asset in @images.snow.spawn
+      new image(@assets, spawn, "./images/spawn.svg")
 
   for hill in @hills.snow
     hill.changeScale(@scale)

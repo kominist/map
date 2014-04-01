@@ -1,6 +1,6 @@
 igloo =
   snow :
-    isletSouthWest :
+    isletSouthEast :
       type : "rect"
       coords :
         left : 0
